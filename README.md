@@ -31,7 +31,20 @@ npm test
 
 # Build for production
 npm run build
+
+## Docker
+
+You can run the application using Docker:
+
+```bash
+# Build the Docker image
+docker build -t vue-todo-app .
+
+# Run the container
+docker run -p 8080:80 vue-todo-app
 ```
+
+Then visit http://localhost:8080 in your browser.
 
 ## Testing
 The app includes comprehensive tests for all features using Vitest and Testing Library. Run the tests with:

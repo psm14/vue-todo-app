@@ -72,7 +72,7 @@ describe('TodoList', () => {
   })
 
   test('sets a due date on todo', async () => {
-    render(TodoList)
+    const { container } = render(TodoList)
     
     // Add a todo first
     const input = screen.getByTestId('new-todo-input')
@@ -80,11 +80,10 @@ describe('TodoList', () => {
     await fireEvent.update(input, 'Test todo')
     await fireEvent.click(addButton)
     
-    const todoId = Date.now()
-    const dateInput = screen.getByTestId('todo-date-' + todoId)
+    const dateInput = container.querySelector('.todo-item input[type="date"]') as HTMLInputElement
     await fireEvent.update(dateInput, '2024-12-31')
     
-    expect(dateInput).toHaveValue('2024-12-31')
+    expect(dateInput.value).toBe('2024-12-31')
   })
 
   test('persists todos in localStorage', async () => {
